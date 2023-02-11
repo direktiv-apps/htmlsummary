@@ -51,7 +51,7 @@ func NewHtmlsummaryAPI(spec *loads.Document) *HtmlsummaryAPI {
 	}
 }
 
-/*HtmlsummaryAPI Run htmlsummary in Direktiv */
+/*HtmlsummaryAPI Generate summaries of HTML pages */
 type HtmlsummaryAPI struct {
 	spec            *loads.Document
 	context         *middleware.Context

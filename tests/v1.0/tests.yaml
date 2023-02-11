@@ -9,17 +9,14 @@ states:
   action:
     function: htmlsummary
     input:
-      commands:
-      - command: Example of running htmlsummary
+      url: https://www.direktiv.io
   transition: state1
 - id: state1
   type: action
   action:
     function: htmlsummary
     input:
-      commands:
-      - command: Example of running htmlsummary
+      file: hello.html
       files:
       - data: Hello World
-        mode: "0755"
-        name: hello.txt
+        name: hello.html

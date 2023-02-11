@@ -29,17 +29,18 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "Run htmlsummary in Direktiv",
+    "description": "Generate summaries of HTML pages",
     "title": "htmlsummary",
     "version": "1.0",
     "x-direktiv-meta": {
       "categories": [
-        "unknown"
+        "docs",
+        "misc"
       ],
       "container": "gcr.io/direktiv/functions/htmlsummary",
       "issues": "https://github.com/direktiv-apps/htmlsummary/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
-      "long-description": "Run htmlsummary in Direktiv as a function",
+      "long-description": "This function uses [trafilature](https://trafilatura.readthedocs.io/en/latest/) to create a summary from an URL or file provided from Direktiv.",
       "maintainer": "[direktiv.io](https://www.direktiv.io) ",
       "url": "https://github.com/direktiv-apps/htmlsummary"
     }
@@ -96,16 +97,24 @@ func init() {
               "additionalProperties": false
             },
             "examples": {
-              "htmlsummary": [
-                {
-                  "result": null,
-                  "success": true
-                },
-                {
-                  "result": null,
-                  "success": true
-                }
-              ]
+              "htmlsummary": {
+                "author": null,
+                "categories": "",
+                "comments": "",
+                "date": "2022-01-01",
+                "excerpt": null,
+                "fingerprint": "yO3kBTVD6Q6adzLqiXlbjeHmXW4=",
+                "hostname": "direktiv.io",
+                "id": null,
+                "language": null,
+                "license": null,
+                "raw_text": "Trusted by highly productive enterprises",
+                "source": "https://www.direktiv.io/",
+                "source-hostname": "direktiv.io",
+                "tags": "",
+                "text": "Trusted by highly productive enterprises",
+                "title": "Direktiv: Scaling the enterprise via event-driven orchestration"
+              }
             }
           },
           "default": {
@@ -208,17 +217,18 @@ func init() {
   ],
   "swagger": "2.0",
   "info": {
-    "description": "Run htmlsummary in Direktiv",
+    "description": "Generate summaries of HTML pages",
     "title": "htmlsummary",
     "version": "1.0",
     "x-direktiv-meta": {
       "categories": [
-        "unknown"
+        "docs",
+        "misc"
       ],
       "container": "gcr.io/direktiv/functions/htmlsummary",
       "issues": "https://github.com/direktiv-apps/htmlsummary/issues",
       "license": "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)",
-      "long-description": "Run htmlsummary in Direktiv as a function",
+      "long-description": "This function uses [trafilature](https://trafilatura.readthedocs.io/en/latest/) to create a summary from an URL or file provided from Direktiv.",
       "maintainer": "[direktiv.io](https://www.direktiv.io) ",
       "url": "https://github.com/direktiv-apps/htmlsummary"
     }
@@ -257,16 +267,24 @@ func init() {
               "additionalProperties": false
             },
             "examples": {
-              "htmlsummary": [
-                {
-                  "result": null,
-                  "success": true
-                },
-                {
-                  "result": null,
-                  "success": true
-                }
-              ]
+              "htmlsummary": {
+                "author": null,
+                "categories": "",
+                "comments": "",
+                "date": "2022-01-01",
+                "excerpt": null,
+                "fingerprint": "yO3kBTVD6Q6adzLqiXlbjeHmXW4=",
+                "hostname": "direktiv.io",
+                "id": null,
+                "language": null,
+                "license": null,
+                "raw_text": "Trusted by highly productive enterprises",
+                "source": "https://www.direktiv.io/",
+                "source-hostname": "direktiv.io",
+                "tags": "",
+                "text": "Trusted by highly productive enterprises",
+                "title": "Direktiv: Scaling the enterprise via event-driven orchestration"
+              }
             }
           },
           "default": {

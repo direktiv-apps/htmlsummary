@@ -2,7 +2,7 @@
 
 // Package restapi htmlsummary
 //
-//	Run htmlsummary in Direktiv
+//	Generate summaries of HTML pages
 //	Schemes:
 //	  http
 //	Host: localhost
