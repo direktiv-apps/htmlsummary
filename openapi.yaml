@@ -1,0 +1,142 @@
+openapi: 3.0.1
+info:
+  title: htmlsummary
+  description: Generate summaries of HTML pages
+  version: "1.0"
+  x-direktiv-meta:
+    container: gcr.io/direktiv/functions/htmlsummary
+    maintainer: "[direktiv.io](https://www.direktiv.io) "
+    issues: https://github.com/direktiv-apps/htmlsummary/issues
+    url: https://github.com/direktiv-apps/htmlsummary
+    categories:
+    - docs
+    - misc
+    license: "[Apache-2.0](https://www.apache.org/licenses/LICENSE-2.0)"
+    long-description: "This function uses [trafilature](https://trafilatura.readthedocs.io/en/latest/)\
+      \ to create a summary from an URL or file provided from Direktiv."
+servers:
+- url: /
+paths:
+  /:
+    post:
+      parameters:
+      - name: Direktiv-ActionID
+        in: header
+        description: "direktiv action id is an UUID. \nFor development it can be set\
+          \ to 'development'\n"
+        schema:
+          type: string
+          default: development
+      - name: Direktiv-TempDir
+        in: header
+        description: |
+          direktiv temp dir is the working directory for that request
+          For development it can be set to e.g. '/tmp'
+        schema:
+          type: string
+          default: /tmp
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                files:
+                  type: array
+                  description: File to create before running commands.
+                  items:
+                    $ref: '#/components/schemas/direktivFile'
+                url:
+                  type: string
+                  description: URL to generate summary
+                file:
+                  type: string
+                  description: File to generate summary
+        required: false
+      responses:
+        "200":
+          description: List of executed commands.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+            htmlsummary:
+              example:
+                author: null
+                categories: ""
+                comments: ""
+                date: 2022-01-01
+                excerpt: null
+                fingerprint: yO3kBTVD6Q6adzLqiXlbjeHmXW4=
+                hostname: direktiv.io
+                id: null
+                language: null
+                license: null
+                raw_text: Trusted by highly productive enterprises
+                source: https://www.direktiv.io/
+                source-hostname: direktiv.io
+                tags: ""
+                text: Trusted by highly productive enterprises
+                title: "Direktiv: Scaling the enterprise via event-driven orchestration"
+        default:
+          description: generic error response
+          headers:
+            Direktiv-ErrorMessage:
+              schema:
+                type: string
+            Direktiv-ErrorCode:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      x-direktiv-function: |-
+        functions:
+        - id: htmlsummary
+          image: gcr.io/direktiv/functions/htmlsummary:1.0
+          type: knative-workflow
+      x-direktiv-examples:
+      - title: Basic
+        content: "- id: htmlsummary\n  type: action\n  action:\n    function: htmlsummary\n\
+          \    input: \n      url: https://www.direktiv.io"
+      - title: With File
+        content: "- id: htmlsummary\n  type: action\n  action:\n    function: htmlsummary\n\
+          \    input: \n      files:\n      - name: hello.html\n        data: Hello\
+          \ World\n      file: hello.html"
+      x-direktiv:
+        cmds:
+        - action: exec
+          exec: "trafilatura {{ if .URL }} -u {{ .URL }} {{ else }} -i {{ .File }}\
+            \ {{ end }} -out json"
+        output: |
+          {
+            "htmlsummary": {{ index (index . 0) "result" | toJson }}
+          }
+      x-direktiv-errors:
+        io.direktiv.command.error: Command execution failed
+        io.direktiv.output.error: Template error for output generation of the service
+        io.direktiv.ri.error: Can not create information object from request
+      x-codegen-request-body-name: body
+components:
+  schemas:
+    direktivFile:
+      type: object
+      x-go-type:
+        type: DirektivFile
+        import:
+          package: github.com/direktiv/apps/go/pkg/apps
+    error:
+      required:
+      - errorCode
+      - errorMessage
+      type: object
+      properties:
+        errorCode:
+          type: string
+        errorMessage:
+          type: string
+x-original-swagger-version: "2.0"
+
